@@ -20,6 +20,8 @@ public class SettingsMenu : MonoBehaviour
         int currenResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
+
+            
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
