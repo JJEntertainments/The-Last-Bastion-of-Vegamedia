@@ -5,12 +5,22 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     private Transform target;
+
+    [Header("Attributes")]
+
     public float range = 15f;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
+    [Header("Unity Setup Fields")]
 
     public string enemyTag = "Enemy";
 
     public Transform partToRotate;
     public float turnSpeed = 10f;
+
+    public GameObject balaPrefab;
+    public Transform firePoint;
 
     // Start is called before the first frame update
     void Start()
@@ -55,9 +65,25 @@ public class Cannon : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
     }
 
-    private void OnDrawGizmosSelected()
+    void Shoot()
+    {
+        GameObject balaGO = (GameObject)Instantiate(balaPrefab, firePoint.position, firePoint.rotation);
+        Bala bullet = balaGO.GetComponent<Bala>();
+
+        if(bullet != null)
+            bullet.Seek(target);
+    }
+
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);

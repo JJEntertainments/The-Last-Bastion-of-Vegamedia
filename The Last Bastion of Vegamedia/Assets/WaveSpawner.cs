@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
-    private int waveIndex = 0;
+    private int totalEnemies = 40;
+    private int enemiesSpawned = 0;
 
     void Update()
     {
-        if (countdown <= 0f)
+        if (countdown <= 0f && enemiesSpawned < totalEnemies)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
@@ -25,13 +27,20 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        waveIndex++;
+        int enemiesInThisWave = Random.Range(1, 6);
 
-        for (int i = 0; i < waveIndex; i++)
+        if (enemiesSpawned + enemiesInThisWave > totalEnemies)
+        {
+            enemiesInThisWave = totalEnemies - enemiesSpawned;
+        }
+
+        for (int i = 0; i < enemiesInThisWave; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
+
+        enemiesSpawned += enemiesInThisWave;
     }
 
     void SpawnEnemy()
