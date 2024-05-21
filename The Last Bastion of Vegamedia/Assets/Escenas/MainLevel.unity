@@ -7617,7 +7617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0268695bef2250f4cb51aaaf235bb549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivelLoad: MainLevel
+  nivelLoad: MainMenu
 --- !u!95 &416433297
 Animator:
   serializedVersion: 5
@@ -7685,7 +7685,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 416433296}
         m_TargetAssemblyTypeName: BotonSalirYEntrarNivel, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17223,7 +17223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0268695bef2250f4cb51aaaf235bb549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivelLoad: MainLevel
+  nivelLoad: MainMenu
 --- !u!95 &957750324
 Animator:
   serializedVersion: 5
@@ -17291,7 +17291,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 957750323}
         m_TargetAssemblyTypeName: BotonSalirYEntrarNivel, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -82540,7 +82540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0268695bef2250f4cb51aaaf235bb549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivelLoad: Level2
+  nivelLoad: MainMenu
 --- !u!95 &1315297559
 Animator:
   serializedVersion: 5
@@ -82608,7 +82608,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1315297558}
         m_TargetAssemblyTypeName: BotonSalirYEntrarNivel, Assembly-CSharp
-        m_MethodName: Quit
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
