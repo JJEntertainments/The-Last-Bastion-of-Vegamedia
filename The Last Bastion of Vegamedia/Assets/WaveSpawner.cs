@@ -10,13 +10,18 @@ public class WaveSpawner : MonoBehaviour
 
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
-
-    private int totalEnemies = 40;
+    public static int totalEnemies = 10;
     private int enemiesSpawned = 0;
+
+    private void Start()
+    {
+        Goblin1.goblinosMuertos = 0;
+        enemiesSpawned = 0;
+    }
 
     void Update()
     {
-        if (countdown <= 0f && enemiesSpawned < totalEnemies)
+        if (countdown <= 0f && enemiesSpawned < totalEnemies && (!vidacastillo.JuegoFz || !vidacastillo.JuegoPau))
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
@@ -41,6 +46,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         enemiesSpawned += enemiesInThisWave;
+        Debug.Log(enemiesSpawned + "Spanw");
     }
 
     void SpawnEnemy()

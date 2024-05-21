@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Goblin1 : MonoBehaviour
@@ -7,29 +8,36 @@ public class Goblin1 : MonoBehaviour
 
     private Transform target;
     private int wavepointIndex = 0;
-
+    public static int goblinosMuertos = 0;
     public int damageToCastillo = 1; // Daño que se realiza al castillo
 
     void Start()
     {
+        
         target = WayPoints.Waypoints[0];
     }
 
     private void Update()
     {
-        if (vida <= 0) // Si la salud llega a 0 o menos, destruye el Goblin
+        if (!vidacastillo.JuegoFz && !vidacastillo.JuegoPau)
         {
-            Destroy(gameObject);
-            return;
-        }
+            if (vida <= 0) // Si la salud llega a 0 o menos, destruye el Goblin
+            {
+                goblinosMuertos++;
+                Debug.Log(goblinosMuertos);
 
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+                Destroy(gameObject);
+                return;
+            }
+
+            Vector3 dir = target.position - transform.position;
+            transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
-        {
-            GetNextWaypoint();
+            if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+            {
+                GetNextWaypoint();
+            }
         }
     }
 
@@ -43,6 +51,7 @@ public class Goblin1 : MonoBehaviour
             {
                 castle.TakeDamage(damageToCastillo);
             }
+            goblinosMuertos++;
             Destroy(gameObject);
             return;
         }
