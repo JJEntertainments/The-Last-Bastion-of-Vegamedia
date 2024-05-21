@@ -85708,7 +85708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0268695bef2250f4cb51aaaf235bb549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivelLoad: Level2
+  nivelLoad: MainLevel
 --- !u!95 &1492728480
 Animator:
   serializedVersion: 5
