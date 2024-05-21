@@ -7,6 +7,7 @@ public class Bala : MonoBehaviour
 
     public float speed = 70f;
     public GameObject impactEffect;
+    public int damage = 1;
 
     public void Seek(Transform _target)
     {
@@ -41,7 +42,13 @@ public class Bala : MonoBehaviour
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 2f);
 
-        Destroy(target.gameObject);
+        Goblin1 goblin = target.GetComponent<Goblin1>();
+
+        if (goblin != null)
+        {
+            goblin.TakeDamage(damage); // Reduce la salud del Goblin al impactar
+        }
+
         Destroy(gameObject);
     }
 }

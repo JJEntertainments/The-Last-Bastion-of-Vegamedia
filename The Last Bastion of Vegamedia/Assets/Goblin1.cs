@@ -3,9 +3,12 @@ using UnityEngine;
 public class Goblin1 : MonoBehaviour
 {
     public float speed = 10f;
+    public int vida = 3;
 
     private Transform target;
     private int wavepointIndex = 0;
+
+    public int damageToCastillo = 1; // Daño que se realiza al castillo
 
     void Start()
     {
@@ -14,6 +17,12 @@ public class Goblin1 : MonoBehaviour
 
     private void Update()
     {
+        if (vida <= 0) // Si la salud llega a 0 o menos, destruye el Goblin
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -22,16 +31,27 @@ public class Goblin1 : MonoBehaviour
         {
             GetNextWaypoint();
         }
+    }
 
-        void GetNextWaypoint()
+    private void GetNextWaypoint()
+    {
+        if (wavepointIndex >= WayPoints.Waypoints.Length - 1)
         {
-            if(wavepointIndex >= WayPoints.Waypoints.Length - 1)
+            // Nuevo: Cuando llega al castillo, le inflige daño
+            vidacastillo castle = FindObjectOfType<vidacastillo>();
+            if (castle != null)
             {
-                Destroy(gameObject);
-                return;
+                castle.TakeDamage(damageToCastillo);
             }
-            wavepointIndex++;
-            target = WayPoints.Waypoints[wavepointIndex];
+            Destroy(gameObject);
+            return;
         }
+        wavepointIndex++;
+        target = WayPoints.Waypoints[wavepointIndex];
+    }
+
+    public void TakeDamage(int damage) // Método para reducir la salud del Goblin cuando recibe daño
+    {
+        vida -= damage;
     }
 }
