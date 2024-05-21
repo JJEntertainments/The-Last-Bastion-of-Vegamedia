@@ -21401,6 +21401,10 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1826717913377034402, guid: f01f2172e1738524a924d86b42f3bd8e, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.506
+      objectReference: {fileID: 0}
     - target: {fileID: 3103779540038613154, guid: f01f2172e1738524a924d86b42f3bd8e, type: 3}
       propertyPath: m_Name
       value: Directional Light
