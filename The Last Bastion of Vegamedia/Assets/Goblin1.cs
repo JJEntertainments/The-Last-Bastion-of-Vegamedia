@@ -24,6 +24,7 @@ public class Goblin1 : MonoBehaviour
             if (vida <= 0) // Si la salud llega a 0 o menos, destruye el Goblin
             {
                 goblinosMuertos++;
+                Monedos.monedas += 2;
                 Debug.Log(goblinosMuertos);
 
                 Destroy(gameObject);
