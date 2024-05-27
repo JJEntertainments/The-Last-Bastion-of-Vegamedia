@@ -80205,6 +80205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standardCannonPrefab: {fileID: 532384815407636551, guid: f309c84dba43d224a8e4bbff54791eb4, type: 3}
+  upgradedCannonPrefab: {fileID: 1356401683328911507, guid: 4df6fdaa8f86c3b48b52a054d9c8fa61, type: 3}
 --- !u!114 &1302938226
 MonoBehaviour:
   m_ObjectHideFlags: 0

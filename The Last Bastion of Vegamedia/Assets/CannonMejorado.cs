@@ -1,22 +1,18 @@
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class CannonMejorado : MonoBehaviour
 {
     private Transform target;
 
     [Header("Attributes")]
-
-    public float range = 15f;
-    public float fireRate = 1f;
+    public float range = 20f;
+    public float fireRate = 2f;
     private float fireCountdown = 0f;
 
     [Header("Unity Setup Fields")]
-
     public string enemyTag = "Enemy";
-
     public Transform partToRotate;
-    public float turnSpeed = 10f;
-
+    public float turnSpeed = 15f;
     public GameObject balaPrefab;
     public Transform firePoint;
 
@@ -57,6 +53,7 @@ public class Cannon : MonoBehaviour
         if (target == null)
             return;
 
+        // Rotar hacia el objetivo
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
@@ -73,8 +70,8 @@ public class Cannon : MonoBehaviour
 
     void Shoot()
     {
-        GameObject balaGO = (GameObject)Instantiate(balaPrefab, firePoint.position, firePoint.rotation);
-        Bala bullet = balaGO.GetComponent<Bala>();
+        GameObject bulletGO = Instantiate(balaPrefab, firePoint.position, firePoint.rotation);
+        Bala2 bullet = bulletGO.GetComponent<Bala2>();
 
         if (bullet != null)
             bullet.Seek(target);

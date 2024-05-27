@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Bala : MonoBehaviour
+public class Bala2 : MonoBehaviour
 {
 
     private Transform target;
 
-    public float speed = 40f;
+    public float speed = 60f;
     public GameObject impactEffect;
-    public int damage = 1;
+    public int damage = 2;
 
     public void Seek(Transform _target)
     {
@@ -17,8 +17,8 @@ public class Bala : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(target == null)
+
+        if (target == null)
         {
             Destroy(gameObject);
             return;
@@ -27,7 +27,7 @@ public class Bala : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if (dir.magnitude <= distanceThisFrame )
+        if (dir.magnitude <= distanceThisFrame)
         {
             HitTarget();
             return;

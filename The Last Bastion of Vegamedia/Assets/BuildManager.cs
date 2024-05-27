@@ -14,16 +14,22 @@ public class BuildManager : MonoBehaviour
     }
 
     public GameObject standardCannonPrefab;
+    public GameObject upgradedCannonPrefab;
+
+    private GameObject cannonToBuild;
 
     private void Start()
     {
         cannonToBuild = standardCannonPrefab;
     }
 
-    private GameObject cannonToBuild;
-
     public GameObject GetCannonToBuild()
     {
         return cannonToBuild;
+    }
+
+    public GameObject GetUpgradedCannonToBuild()
+    {
+        return upgradedCannonPrefab;
     }
 }

@@ -6,7 +6,6 @@ public class Node : MonoBehaviour
     public Vector3 positionOffset;
 
     private GameObject cannon;
-
     private Renderer rend;
     private Color startColor;
 
@@ -18,16 +17,42 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(cannon != null)
+        if (cannon != null)
         {
-            Debug.Log("Ya hay puesto un cañón!");
+            if (cannon.GetComponent<Cannon>() != null && Monedos.monedas >= 30)
+            {
+                // Mejorar a CannonMejorado
+                GameObject upgradedCannon = BuildManager.instance.GetUpgradedCannonToBuild();
+                if (upgradedCannon != null)
+                {
+                    Destroy(cannon); // Destruir el cañón actual
+                    cannon = (GameObject)Instantiate(upgradedCannon, transform.position + positionOffset, transform.rotation);
+                    Monedos.SpendMonedas(30);
+                    Debug.Log("Cañón mejorado a CannonMejorado");
+                }
+                return;
+            }
+            else
+            {
+                Debug.Log("No tienes suficientes monedas para mejorar el cañón o ya está mejorado!");
+            }
+            return;
+        }
+
+        if (Monedos.monedas < 15)
+        {
+            Debug.Log("No tienes suficientes monedas para construir un cañón!");
             return;
         }
 
         // Construcción del cañón
         GameObject cannonToBuild = BuildManager.instance.GetCannonToBuild();
-        cannon = (GameObject)Instantiate(cannonToBuild, transform.position + positionOffset, transform.rotation);
-
+        if (cannonToBuild != null)
+        {
+            cannon = (GameObject)Instantiate(cannonToBuild, transform.position + positionOffset, transform.rotation);
+            Monedos.SpendMonedas(15);
+            Debug.Log("Cañón construido");
+        }
     }
 
     void OnMouseEnter()

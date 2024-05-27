@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Goblin1 : MonoBehaviour
 {
-    public float speed = 10f;
-    public int vida = 3;
+    public float speed = 5f;
+    public int vida = 2;
 
     private Transform target;
     private int wavepointIndex = 0;
@@ -24,7 +24,7 @@ public class Goblin1 : MonoBehaviour
             if (vida <= 0) // Si la salud llega a 0 o menos, destruye el Goblin
             {
                 goblinosMuertos++;
-                Monedos.monedas += 2;
+                Monedos.AddMonedas(5);
                 Debug.Log(goblinosMuertos);
 
                 Destroy(gameObject);
